@@ -1,6 +1,6 @@
 Pimoroni Presto adding timezone to World Clock example
 
-I am happy I received the ordered Pimoroni Presto Kit (PIM ...)
+I am happy I received the ordered Pimoroni Presto Kit (PIM765)
 
 PURPOSE:
 To add timezone correction to the World Clock example:
