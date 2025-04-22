@@ -8,6 +8,7 @@ To add timezone correction to the World Clock example:
 See the folder ```Examples```
 
 File modified:  ```world_clock.py```
+
 File added: ```secrets.py```
 
 The current setting of  in file ```secrets.py``` is set for the time zone of Europe/Lisbon
@@ -27,7 +28,7 @@ time_string = None  # used in function update()
 
 ```
 
-and then in a function like: update() the following code:
+then in a function like: update() the following code:
 
 ```
 # A function to update the RTC with a datetime from an NTP server
