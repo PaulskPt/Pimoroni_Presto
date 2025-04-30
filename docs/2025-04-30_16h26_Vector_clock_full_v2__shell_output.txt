@@ -144,3 +144,19 @@ Vector Clock Full for Pimoroni Presto
 
 Changing clock aspect to "Blue"
 Changing clock aspect to "Reversed"
+Changing clock aspect to "Grey"
+Changing clock aspect to "Dark"
+Changing clock aspect to "Normal"
+Changing clock aspect to "Blue"
+Changing clock aspect to "Reversed"
+Changing clock aspect to "Grey"
+Changing clock aspect to "Dark"
+Changing clock aspect to "Normal"
+Changing clock aspect to "Blue"
+Changing clock aspect to "Reversed"
+Changing clock aspect to "Grey"
+Changing clock aspect to "Dark"
+rtc updated from NTP timestamp
+datetime received from NTP server: 
+2025-04-30 T 19:57:00, Wed, yearday: 120, timezone: UTC+1
+Changing clock aspect to "Normal"
