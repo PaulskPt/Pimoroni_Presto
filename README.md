@@ -9,7 +9,7 @@ PURPOSE OF THE CHANGED EXAMPLES IN THIS REPO:
 
 See the folder ```Examples```
 
-Files modified:  ```word_clock_w_tz.py``` and ```vector_clo9ck_full_v2.py```
+Files modified:  ```word_clock_w_tz.py``` and ```vector_clock_full_v2.py```
 
 File added: ```secrets.py```
 
