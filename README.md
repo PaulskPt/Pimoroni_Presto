@@ -1,13 +1,15 @@
-Pimoroni Presto adding timezone to World Clock example
+# CHANGED EXAMPLES FOR THE PIMORONI PRESTO:
 
 I am happy I received the ordered Pimoroni Presto Kit (PIM765)
 
-PURPOSE:
-To add timezone correction to the World Clock example:
+PURPOSE OF THE CHANGED EXAMPLES IN THIS REPO:
+1) adding timezone to "Word Clock" example;
+2) adding timezone and other changes to the "Analog Clock".
+
 
 See the folder ```Examples```
 
-File modified:  ```world_clock.py```
+Files modified:  ```word_clock_w_tz.py``` and ```vector_clo9ck_full_v2.py```
 
 File added: ```secrets.py```
 
@@ -17,6 +19,12 @@ which is GMT +1.
 ```
 TIMEZONE_OFFSET = "1" # One hour for Europe/Lisbon
 ```
+
+Images. See the folder ```images```.
+
+Shell (serial) output text files: seel folder ```docs```.
+
+# EXAMPLE WORD CLOCK
 
 In any micropython script, in the global variables section, one can add:
 ```
@@ -59,4 +67,21 @@ def update():
 
     # more code here...
 
-    ```
+```
+
+# EXAMPLE ANALOG CLOCK PAULSKPT
+
+In this example the following changes have been made:
+
+1) to get ntp datetimestamp at start and next at set interval. See NTP_UPDATE_INTERVAL at line 19.
+3) in the main loop added time calculations to control the ntp refresh interval;
+2) circular change of the clock face aspect colours. At hours between 22pm and 7am the brightest clock face will not be shown.
+   During these night hours also reversed colours will be used;
+3) optional wait for 0 seconds at startup (boolean flag "do_startwait" at line 59);
+4) wdDict (weekday dictionary). Print day of the week (serial output only);
+5) print day of the year (serial output only);
+5) print timezone. See function pr_dt() (serial output only).
+
+# FINAL NOTES
+I received a suggestion to create a PR for (at least the first example) however I am not that good in creating PR's. It takes also quite some time before a PR is handled.
+For these reasons I prefer to create my own repo's and announce their existance in the various forums.
