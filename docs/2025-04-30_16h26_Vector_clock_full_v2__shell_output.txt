@@ -123,3 +123,24 @@ update_fm_ntp(): rtc updated from NTP timestamp
 pr_dt(): datetime received from NTP server: 2025-04-30 T 17:42:01, Wed, day of the year: 120, timezone: UTC+1
 Clock aspect index: 4, changing to Dark
 Clock aspect index: 0, changing to Normal
+
+--------------------------------------------------------
+Shell output after some changes of output (less output):
+--------------------------------------------------------
+>>> %Run -c $EDITOR_CONTENT
+
+MPY: soft reboot
+ntp datetime refresh interval: 15 minutes
+rtc updated from NTP timestamp
+datetime received from NTP server: 
+2025-04-30 T 19:41:56, Wed, yearday: 120, timezone: UTC+1
+Waiting for the localtime to reach 0 seconds . . . . . 
+Done! Starting Clock.
+Starting with local datetime: 2025-04-30 19:42:00
+Changing to daytime clock.
+Changing clock aspect to "Normal"
+
+Vector Clock Full for Pimoroni Presto
+
+Changing clock aspect to "Blue"
+Changing clock aspect to "Reversed"

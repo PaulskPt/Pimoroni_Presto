@@ -62,7 +62,7 @@ t_start = time.ticks_ms()
 start_asp_t = t_start
 
 rtc = machine.RTC()
-print(f"type(rtc) = {type(rtc)}")
+# print(f"type(rtc) = {type(rtc)}")
 
 vector = PicoVector(display)
 t = Transform()
@@ -159,7 +159,8 @@ def chg_aspect(idx):
         use_inverse = False                      # |
     #----------------------------------------------+
 
-    print(f"Clock aspect index: {idx}, changing to {aspect_lst[idx]}")
+    # print(f"Clock aspect index: {idx}, ")
+    print(f"Changing clock aspect to \"{aspect_lst[idx]}\"")
 
     if idx == 0:
         # Redefine colours for a normal (standard) clock
@@ -208,7 +209,7 @@ def pr_dt():
     global dt
     TAG = "pr_dt(): "
     if isinstance(dt, tuple) and len(dt) == 8:
-        print(TAG + "datetime received from NTP server: ", end = '')
+        print("datetime received from NTP server: ", end = '\n')
         # print(f"weekday = {dt[6]}", end = '')
         if dt[6] in wdDict.keys():
             wday = wdDict[dt[6]]
@@ -228,7 +229,7 @@ def pr_dt():
                 tz = TIMEZONE_OFFSET
 
     
-        print("{:4d}-{:02d}-{:02d} T {:02d}:{:02d}:{:02d}, {:s}, day of the year: {:3d}, timezone: UTC{:s}".format( \
+        print("{:4d}-{:02d}-{:02d} T {:02d}:{:02d}:{:02d}, {:s}, yearday: {:3d}, timezone: UTC{:s}".format( \
             dt[0], dt[1], dt[2], dt[3], dt[4], dt[5],  wday, dt[7], tz))
         #   year, month, day, hours, minutes, seconds, wday, yearday))
     else:
@@ -236,7 +237,6 @@ def pr_dt():
 
 def update_fm_ntp():
     global dt
-    TAG = "update_fm_ntp(): "
     ret = False
     t1 = "Unable to get time from NTP server.\n\nCheck your network and try again."
     
@@ -254,7 +254,7 @@ def update_fm_ntp():
             # set the rtc
             rtc.datetime((year, month, day, 0, hours, minutes, seconds, 0))
             ret = True
-            print(TAG + "rtc updated from NTP timestamp")
+            print("rtc updated from NTP timestamp")
             # ntptime.settime()  # original code
     
         except OSError:
@@ -302,7 +302,7 @@ else:
 #------------- WAIT TO REACH 0 SECONDS --------------------
 if do_startwait:
     # Try to sync Start_asp_t with time.localtime() seconds
-    print("Waiting for the localtime to reach 0 seconds.", end='')
+    print("Waiting for the localtime to reach 0 seconds ", end='')
     t_ticks = time.localtime()[5] # get seconds
     my_ticks_old = 0
     while t_ticks % 60 != 0:
@@ -310,7 +310,7 @@ if do_startwait:
         my_ticks = int(time.ticks_ms() / 1_000)
         if my_ticks != my_ticks_old:
             my_ticks_old = my_ticks
-            print('.', end='')
+            print('. ', end='')
     print("\nDone! Starting Clock.")
 #----------------------------------------------------------
 
@@ -323,7 +323,7 @@ pr_loc_time(tm)
 
 last_second = None
 
-print(f"value of hh = {hh}.")
+# print(f"value of hh = {hh}.")
 if (hh >= 22 and hh <= 24) or (hh >= 0 and hh < 7): # during night hours show a more dimmed clock face
     print("Changing to nighttime clock.")
     aspect_minimum = 1
@@ -337,8 +337,8 @@ aspect_idx = aspect_minimum
 chg_aspect(aspect_idx)
 if use_inverse:
     print("Inverse active")
-else:
-    print("Inverse not active")
+#else:
+#    print("Inverse not active")
 #display.set_pen(WHITE if use_inverse else BLACK)  # was: BLACK
 display.set_pen(WHITE)
 display.clear()
