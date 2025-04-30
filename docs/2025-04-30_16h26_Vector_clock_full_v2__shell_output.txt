@@ -1,0 +1,125 @@
+Wednesday 2025-05-30 16h26 utc+1
+
+Board: Pimoroni Presto
+
+Micropython script: vector_clock_full_v2.py
+
+IDE: Thonny
+
+Notes @PaulskPt: added following functionalities: 
+1) to get ntp datetimestamp at at start and next at set interval. See NTP_UPDATE_INTERVAL at line 19.
+3) in the main loop added time calculations to control the ntp refresh interval;
+2) circular change of the clock face aspect colours. At hours between 22pm and 7am the brightest clock face will not be shown.
+   During these night hours also reversed colours will be used.
+3) optional wait for 0 seconds at startup (boolean flag "do_startwait" at line 59);
+4) wdDict (weekday dictionary). Print day of the week (serial output only);
+5) print day of the year (serial output only)
+5) print timezone. See function pr_dt() (serial output only);
+
+
+
+Shell output:
+
+---------------------------------------------------------------------------------------------------
+>>> %Run -c $EDITOR_CONTENT
+
+MPY: soft reboot
+ntp datetime refresh interval: 15 minutes
+type(rtc) = <class 'RTC'>
+update_fm_ntp(): rtc updated from NTP timestamp
+pr_dt(): datetime received from NTP server: 2025-04-30 T 16:26:55, Wed, day of the year: 120, timezone: UTC+1
+Waiting for the localtime to reach 0 seconds.......
+Done! Starting Clock.
+Starting with local datetime: 2025-04-30 16:27:00
+value of hh = 16.
+Changing to daytime clock.
+Clock aspect index: 0, changing to Normal
+Inverse not active
+
+Vector Clock Full for Pimoroni Presto
+
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+update_fm_ntp(): rtc updated from NTP timestamp
+pr_dt(): datetime received from NTP server: 2025-04-30 T 16:42:01, Wed, day of the year: 120, timezone: UTC+1
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+update_fm_ntp(): rtc updated from NTP timestamp
+pr_dt(): datetime received from NTP server: 2025-04-30 T 16:57:01, Wed, day of the year: 120, timezone: UTC+1
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+update_fm_ntp(): rtc updated from NTP timestamp
+pr_dt(): datetime received from NTP server: 2025-04-30 T 17:12:01, Wed, day of the year: 120, timezone: UTC+1
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+update_fm_ntp(): rtc updated from NTP timestamp
+pr_dt(): datetime received from NTP server: 2025-04-30 T 17:27:01, Wed, day of the year: 120, timezone: UTC+1
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
+Clock aspect index: 1, changing to Blue
+Clock aspect index: 2, changing to Reversed
+Clock aspect index: 3, changing to Grey
+update_fm_ntp(): rtc updated from NTP timestamp
+pr_dt(): datetime received from NTP server: 2025-04-30 T 17:42:01, Wed, day of the year: 120, timezone: UTC+1
+Clock aspect index: 4, changing to Dark
+Clock aspect index: 0, changing to Normal
