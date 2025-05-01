@@ -160,3 +160,27 @@ rtc updated from NTP timestamp
 datetime received from NTP server: 
 2025-04-30 T 19:57:00, Wed, yearday: 120, timezone: UTC+1
 Changing clock aspect to "Normal"
+
+------------------------------
+Update 2025-05-01 14h02 utc +1
+------------------------------
+>>> %Run -c $EDITOR_CONTENT
+
+MPY: soft reboot
+ntp datetime refresh interval: 15 minutes
+rtc updated from NTP timestamp
+datetime received from NTP server: 
+2025-05-01 T 14:01:44, Thu, yearday: 121, timezone: UTC+1
+Starting with local datetime: 2025-05-01 14:01:44
+Changing to daytime clock.
+Changing clock aspect to "Normal"
+
+Vector Clock Full for Pimoroni Presto
+
+Ambient lights switched off
+Ambient lights colour changed to: Red
+Ambient lights switched off
+Ambient lights colour changed to: Green
+Ambient lights colour changed to: Blue
+Ambient lights colour changed to: White
+Ambient lights switched off

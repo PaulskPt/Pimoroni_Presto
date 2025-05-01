@@ -59,6 +59,8 @@ SE = False # touch area 4
 
 # Ambient LEDs colour definitions:
 
+ambLedsClrs = ["Red", "Green", "Blue", "White"]
+
 ambLedsDict = {0: (255,   0,   0),  # Red
                1: (  0, 255,   0),  # Green
                2: (  0,   0, 255),  # Blue
@@ -399,6 +401,9 @@ start_t = time.ticks_ms()
 curr_t = 0
 elapsed_t = 0
 
+leds_on_cnt = 0
+leds_off_cnt = 0
+
 # Take a local reference to touch for a tiny performance boost
 touch = presto.touch
 
@@ -438,31 +443,38 @@ while True:
             NE = False
         elif SW:
             amb_leds_colour_idx += 1
+            leds_on_cnt = 0
             if amb_leds_colour_idx > amb_leds_colour_idx_max:
                 amb_leds_colour_idx = -1
-                
-                    
             leds_on = True
             SW = False
         elif SE:
             leds_on = False
+            leds_off_cnt = 0
             SE = False
 
     if leds_on:
-        # Cycle the hue of the backlight LEDs to match the icon colours
-        hue = 1.0 # - (move_angle % (2 * math.pi)) / (2 * math.pi)
-        if amb_leds_colour_idx in ambLedsDict.keys():
-            clr = ambLedsDict[amb_leds_colour_idx]
-            for i in range(7):
-                #presto.set_led_hsv(i, hue, 1.0, 0.5)
-                presto.set_led_rgb(i, clr[0], clr[1], clr[2])
+        if leds_on_cnt == 0:
+            # Cycle the hue of the backlight LEDs to match the icon colours
+            hue = 1.0 # - (move_angle % (2 * math.pi)) / (2 * math.pi)
+            if amb_leds_colour_idx in ambLedsDict.keys():
+                print(f"Ambient lights colour changed to: {ambLedsClrs[amb_leds_colour_idx]}")
+                clr = ambLedsDict[amb_leds_colour_idx]
+                leds_on_cnt += 1
+                for i in range(7):
+                    #presto.set_led_hsv(i, hue, 1.0, 0.5)
+                    presto.set_led_rgb(i, clr[0], clr[1], clr[2])
     else:
-        hue = 0.0 # - (move_angle % (2 * math.pi)) / (2 * math.pi)
-        for i in range(7):
-            #presto.set_led_hsv(i, hue, 0.0, 0.0)
-            presto.set_led_rgb(i, 0, 0, 0)
+        if leds_off_cnt == 0:
+            leds_on_cnt = 0
+            leds_off_cnt += 1
+            print("Ambient lights switched off")
+            hue = 0.0 # - (move_angle % (2 * math.pi)) / (2 * math.pi)
+            for i in range(7):
+                #presto.set_led_hsv(i, hue, 0.0, 0.0)
+                presto.set_led_rgb(i, 0, 0, 0)
     presto.update()
-    time.sleep(0.05) # prevent touch bounce (50 mSecs)
+    time.sleep(0.1) # prevent touch bounce (100 mSecs)
         
     
     if last_second == second:
