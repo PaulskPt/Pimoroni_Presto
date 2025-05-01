@@ -98,6 +98,7 @@ For the touch functionality I devided the screen into 4 quadrants:
 
 
 ```
+Added functionality to read, print and display data from the ```Pimoroni Multi-sensor stick (PIM745)```. See image in folder ```images```. 
 
 # FINAL NOTES
 I received a suggestion to create a PR for (at least the first example) however I am not that good in creating PR's. It takes also quite some time before a PR is handled.
