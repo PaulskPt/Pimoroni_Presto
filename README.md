@@ -89,10 +89,10 @@ Added touch functionality to the 2nd example.
 For the touch functionality I devided the screen into 4 quadrants: 
 ```
         |
-   NW   |   NE                 Touching the NW quadrant changes the index for the clock aspect. 
---------+--------              Touching the NE quadrant toggles the show_date flag. Default this flag is set to True.
-   SW   |   SE                 Touching the SW quadrant switches on the ambient LEDs and changes the colour index.
-        |                      Touching the SE quadrant switches off the ambient LEDs.
+   NW   |   NE       Touching the NW quadrant changes the index for the clock aspect. 
+--------+--------    Touching the NE quadrant toggles the show_date flag. Default this flag is set to True.
+   SW   |   SE       Touching the SW quadrant switches on the ambient LEDs and changes the colour index.
+        |            Touching the SE quadrant switches off the ambient LEDs.
 
 
 ```
