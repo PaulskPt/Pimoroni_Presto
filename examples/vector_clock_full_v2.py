@@ -391,11 +391,6 @@ vector.draw(face)
 
 print("\nVector Clock Full for Pimoroni Presto\n")
 
-aspect_chg_interval_t = 1 * 60 # 1 minute
-    
-curr_asp_t = None
-elapsed_asp_t = None
-
 start_t = time.ticks_ms()
 curr_t = 0
 elapsed_t = 0
@@ -463,22 +458,7 @@ while True:
     presto.update()
     time.sleep(0.05) # prevent touch bounce (50 mSecs)
         
-    """
-    curr_asp_t = time.time()  # epoch timeserial
-    elapsed_asp_t = curr_asp_t - start_asp_t
-    # print(f"elapsed_asp_t = {elapsed_asp_t}")
-    if elapsed_asp_t > aspect_chg_interval_t:
-        start_buzzer()
-        start_asp_t = curr_asp_t
-        aspect_idx += 1
-        if aspect_idx > aspect_maximum:
-            aspect_idx = aspect_minimum
-        chg_aspect(aspect_idx)
     
-    if time.time() - alert_start_time >= alert_duration:
-        stop_buzzer()
-    """
-
     if last_second == second:
         time.sleep_ms(10)
         continue
