@@ -85,6 +85,7 @@ In this example the following changes have been made:
 # UPDATES
 
 2025-05-01: 
+Added font file "Roboto-Medium.af"
 Added touch functionality to the 2nd example. 
 For the touch functionality I devided the screen into 4 quadrants: 
 ```
