@@ -82,6 +82,21 @@ In this example the following changes have been made:
 5) print day of the year (serial output only);
 5) print timezone. See function pr_dt() (serial output only).
 
+# UPDATES
+
+2025-05-01: 
+Added touch functionality to the 2nd example. 
+For the touch functionality I devided the screen into 4 quadrants: 
+```
+        |
+   NW   |   NE                 Touching the NW quadrant increases the index for the clock aspect. 
+--------+--------              Touching the NE quadrant decreases the index for the clock aspect
+   SW   |   SE                 Touching the SW quadrant switches on the ambient LEDs and increases the colour
+        |                      Touching the SE quadrant switches off the ambient LEDs
+
+
+```
+
 # FINAL NOTES
 I received a suggestion to create a PR for (at least the first example) however I am not that good in creating PR's. It takes also quite some time before a PR is handled.
 For these reasons I prefer to create my own repo's and announce their existance in the various forums.
