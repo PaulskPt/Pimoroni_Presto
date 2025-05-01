@@ -65,7 +65,7 @@ ambLedsDict = {0: (255,   0,   0),  # Red
 amb_leds_colour_idx = -1 
 amb_leds_colour_idx_max = 3  # 0 ~ 3 = 4 colours
 
-use_buzzer = True
+use_buzzer = False
 
 # Setup the buzzer. The Presto piezo is on pin 43.
 buzzer = Buzzer(43)
@@ -398,6 +398,8 @@ elapsed_t = 0
 
 # Take a local reference to touch for a tiny performance boost
 touch = presto.touch
+
+# ToDo: using Buzzer
 
 while True:
     # time.sleep(60 * NTP_UPDATE_INTERVAL)
