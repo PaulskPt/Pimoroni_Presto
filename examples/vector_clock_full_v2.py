@@ -297,19 +297,19 @@ def ck_corners():
     margin = 5
     
     # check upper left (corner 1)
-    if x >= 0 and x <= HORI_MIDDLE-margin and y >= 0 and y <= VERT_MIDDLE-margin:
+    if x >= margin and x <= HORI_MIDDLE-margin and y >= margin and y <= VERT_MIDDLE-margin:
         NW = True
     
     # check upper right (corner 2)
-    elif x >= HORI_MIDDLE+margin and x <= WIDTH-margin and y >= 0 and y <= VERT_MIDDLE-margin:
+    elif x >= HORI_MIDDLE+margin and x <= WIDTH-margin and y >= margin and y <= VERT_MIDDLE-margin:
         NE = True
     
     # check lower left (corner 3)
-    elif x >= 0 and x <= HORI_MIDDLE-margin and y >= VERT_MIDDLE+margin and y <= HEIGHT-margin:
+    elif x >= margin and x <= HORI_MIDDLE-margin and y >= VERT_MIDDLE+margin and y <= HEIGHT-margin:
         SW = True
     
     # check lower right (corner 4)
-    elif x >= HORI_MIDDLE+margin and x <= HEIGHT-margin and y >= VERT_MIDDLE+margin and y <= HEIGHT-margin:
+    elif x >= HORI_MIDDLE+margin and x <= WIDTH-margin and y >= VERT_MIDDLE+margin and y <= HEIGHT-margin:
         SE = True
 
 hub = Polygon()
