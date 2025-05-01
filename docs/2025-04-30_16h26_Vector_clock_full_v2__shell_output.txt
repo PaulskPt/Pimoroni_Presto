@@ -216,3 +216,38 @@ datetime received from NTP server:
 rtc updated from NTP timestamp
 datetime received from NTP server: 
 2025-05-01 T 17:37:41, Thu, yearday: 121, timezone: UTC+1
+
+
+-----------------------------
+Update 2025-05-01 19:55 utc+1
+-----------------------------
+
+>>> %Run -c $EDITOR_CONTENT
+
+MPY: soft reboot
+ntp datetime refresh interval: 15 minutes
+rtc updated from NTP timestamp
+datetime received from NTP server: 
+2025-05-01 T 19:55:34, Thu, yearday: 121, timezone: UTC+1
+Starting with local datetime: 2025-05-01 19:55:34
+Changing to daytime clock.
+Changing clock aspect to "Normal"
+
+Vector Clock Full for Pimoroni Presto
+
+BME280 sensor is connected
+Show date flag = True
+Ambient lights switched off
+Show date flag = False
+Show date flag = True
+BME280 temp: 24.53 ºC, press:  996.37 mB, hum: 35.30 %rH
+Changing clock aspect to "Blue"
+BME280 temp: 24.52 ºC, press:  996.34 mB, hum: 35.21 %rH
+BME280 temp: 24.49 ºC, press:  996.30 mB, hum: 35.10 %rH
+BME280 temp: 24.46 ºC, press:  996.33 mB, hum: 35.05 %rH
+BME280 temp: 24.41 ºC, press:  996.30 mB, hum: 35.12 %rH
+BME280 temp: 24.40 ºC, press:  996.32 mB, hum: 35.14 %rH
+BME280 temp: 24.38 ºC, press:  996.26 mB, hum: 35.34 %rH
+
+
+ 
