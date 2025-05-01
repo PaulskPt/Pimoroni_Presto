@@ -41,6 +41,8 @@ presto.auto_ambient_leds(False)
 display = presto.display
 WIDTH, HEIGHT = display.get_bounds()
 MIDDLE = (int(WIDTH / 2), int(HEIGHT / 2))
+HORI_MIDDLE = int(WIDTH / 2)
+VERT_MIDDLE = int(HEIGHT / 2)
 
 BLACK = display.create_pen(0, 0, 0)
 WHITE = display.create_pen(200, 200, 200)
@@ -294,19 +296,19 @@ def ck_corners():
     y = touch.y
     
     # check upper left (corner 1)
-    if x >= 0 and x <= 200 and y >= 0 and y <= 140:
+    if x >= 0 and x <= HORI_MIDDLE-10 and y >= 0 and y <= VERT_MIDDLE-10:
         NW = True
     
     # check upper right (corner 2)
-    elif x >= 255 and x <= 470 and y >= 0 and y <= 140:
+    elif x >= HORI_MIDDLE+10 and x <= WIDTH-10 and y >= 0 and y <= VERT_MIDDLE-10:
         NE = True
     
     # check lower left (corner 3)
-    elif x >= 0 and x <= 200 and y >= 280 and y <= 480:
+    elif x >= 0 and x <= HORI_MIDDLE-10 and y >= VERT_MIDDLE+10 and y <= HEIGHT-10:
         SW = True
     
     # check lower right (corner 4)
-    elif x >= 255 and x <= 470 and y >= 280 and y <= 480:
+    elif x >= HORI_MIDDLE+10 and x <= HEIGHT-10 and y >= VERT_MIDDLE+10 and y <= HEIGHT-10:
         SE = True
 
 hub = Polygon()
