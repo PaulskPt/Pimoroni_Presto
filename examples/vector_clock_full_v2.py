@@ -36,7 +36,8 @@ wdDict = {0: "Mon",
 # --------------------------------------
 
 # Setup for the Presto display
-presto = Presto(full_res=True)
+presto = Presto(full_res=True, ambient_light=False)
+presto.auto_ambient_leds(False)
 display = presto.display
 WIDTH, HEIGHT = display.get_bounds()
 MIDDLE = (int(WIDTH / 2), int(HEIGHT / 2))
