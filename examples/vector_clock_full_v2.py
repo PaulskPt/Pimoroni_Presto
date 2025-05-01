@@ -33,6 +33,8 @@ wdDict = {0: "Mon",
           5: "Sat",
           6: "Sun"}
 
+monthsLst = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
 # --------------------------------------
 
 # Setup for the Presto display
@@ -79,6 +81,7 @@ alert_duration = 2
 alert_start_time = 0
 
 do_startwait = False
+show_date = True
 
 t_start = time.ticks_ms()
 start_asp_t = t_start
@@ -292,6 +295,17 @@ def update_fm_ntp():
     
     return ret
 
+def disp_date():
+    tm = time.localtime()
+    year, month, day, _, _, _, _, _ = tm
+    m = monthsLst[month]
+    t = "{:02d} {:s} {:04d}".format(day, m, year)
+    
+    #x, y, w, h = display.measure_text(t, 0, 0)
+    display.set_pen(BLACK)
+    display.text(t, 80, VERT_MIDDLE-75, WIDTH, 6)
+    
+
 def ck_corners():
     global touch, NW, NE, SW, SE
     x = touch.x
@@ -436,10 +450,13 @@ while True:
             chg_aspect(aspect_idx)
             NW = False
         elif NE:
+            show_date = not show_date # flip the flag
+            """
             aspect_idx += 1
             if aspect_idx > aspect_maximum:
                 aspect_idx = aspect_minimum
             chg_aspect(aspect_idx)
+            """
             NE = False
         elif SW:
             amb_leds_colour_idx += 1
@@ -484,6 +501,8 @@ while True:
     last_second = second
     
     t.reset()
+    
+    # disp_date()
 
     display.set_pen(BLACK if use_inverse else WHITE)  # was: WHITE
     
@@ -559,6 +578,9 @@ while True:
 
     t.reset()
     vector.draw(hub)
+    
+    if show_date:
+        disp_date()
 
     presto.update()
     gc.collect()
