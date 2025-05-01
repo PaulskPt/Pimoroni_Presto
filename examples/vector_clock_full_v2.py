@@ -301,14 +301,14 @@ def disp_date():
     m = monthsLst[month]
     t = "{:02d} {:s} {:04d}".format(day, m, year)
     
-    #x, y, w, h = display.measure_text(t, 0, 0)
+    vector.set_font_size(66)
+
     if aspect_idx == 1:
         clr = BLUE
     else:
         clr = BLACK
     display.set_pen(clr)
-    display.text(t, 80, VERT_MIDDLE-75, WIDTH, 6)
-    
+    vector.text(t, 70, VERT_MIDDLE-30)
 
 def ck_corners():
     global touch, NW, NE, SW, SE
@@ -429,6 +429,10 @@ print(f"Show date flag = {"True" if show_date == True else "False"}")
 
 # ToDo: using Buzzer
 
+vector.set_font("Roboto-Medium.af", 66)
+vector.set_font_letter_spacing(100)
+vector.set_font_word_spacing(100)
+
 while True:
     # time.sleep(60 * NTP_UPDATE_INTERVAL)
     curr_t = time.ticks_ms()
@@ -508,8 +512,6 @@ while True:
     last_second = second
     
     t.reset()
-    
-    # disp_date()
 
     display.set_pen(BLACK if use_inverse else WHITE)  # was: WHITE
     
