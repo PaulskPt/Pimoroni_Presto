@@ -294,21 +294,22 @@ def ck_corners():
     global touch, NW, NE, SW, SE
     x = touch.x
     y = touch.y
+    margin = 5
     
     # check upper left (corner 1)
-    if x >= 0 and x <= HORI_MIDDLE-10 and y >= 0 and y <= VERT_MIDDLE-10:
+    if x >= 0 and x <= HORI_MIDDLE-margin and y >= 0 and y <= VERT_MIDDLE-margin:
         NW = True
     
     # check upper right (corner 2)
-    elif x >= HORI_MIDDLE+10 and x <= WIDTH-10 and y >= 0 and y <= VERT_MIDDLE-10:
+    elif x >= HORI_MIDDLE+margin and x <= WIDTH-margin and y >= 0 and y <= VERT_MIDDLE-margin:
         NE = True
     
     # check lower left (corner 3)
-    elif x >= 0 and x <= HORI_MIDDLE-10 and y >= VERT_MIDDLE+10 and y <= HEIGHT-10:
+    elif x >= 0 and x <= HORI_MIDDLE-margin and y >= VERT_MIDDLE+margin and y <= HEIGHT-margin:
         SW = True
     
     # check lower right (corner 4)
-    elif x >= HORI_MIDDLE+10 and x <= HEIGHT-10 and y >= VERT_MIDDLE+10 and y <= HEIGHT-10:
+    elif x >= HORI_MIDDLE+margin and x <= HEIGHT-margin and y >= VERT_MIDDLE+margin and y <= HEIGHT-margin:
         SE = True
 
 hub = Polygon()
