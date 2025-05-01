@@ -302,7 +302,11 @@ def disp_date():
     t = "{:02d} {:s} {:04d}".format(day, m, year)
     
     #x, y, w, h = display.measure_text(t, 0, 0)
-    display.set_pen(BLACK)
+    if aspect_idx == 1:
+        clr = BLUE
+    else:
+        clr = BLACK
+    display.set_pen(clr)
     display.text(t, 80, VERT_MIDDLE-75, WIDTH, 6)
     
 
@@ -421,6 +425,8 @@ leds_off_cnt = 0
 # Take a local reference to touch for a tiny performance boost
 touch = presto.touch
 
+print(f"Show date flag = {"True" if show_date == True else "False"}")
+
 # ToDo: using Buzzer
 
 while True:
@@ -444,13 +450,14 @@ while True:
         touch.state = False
         
         if NW:
-            aspect_idx -= 1
-            if aspect_idx < aspect_minimum:
-                aspect_idx = aspect_maximum
+            aspect_idx += 1
+            if aspect_idx > aspect_maximum:
+                aspect_idx = aspect_minimum
             chg_aspect(aspect_idx)
             NW = False
         elif NE:
             show_date = not show_date # flip the flag
+            print(f"Show date flag = {"True" if show_date == True else "False"}")
             """
             aspect_idx += 1
             if aspect_idx > aspect_maximum:
