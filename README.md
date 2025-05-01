@@ -91,7 +91,7 @@ For the touch functionality I devided the screen into 4 quadrants:
         |
    NW   |   NE                 Touching the NW quadrant increases the index for the clock aspect. 
 --------+--------              Touching the NE quadrant decreases the index for the clock aspect
-   SW   |   SE                 Touching the SW quadrant switches on the ambient LEDs and increases the colour
+   SW   |   SE                 Touching the SW quadrant switches on the ambient LEDs and changes the colour index
         |                      Touching the SE quadrant switches off the ambient LEDs
 
 
