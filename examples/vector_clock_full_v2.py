@@ -45,7 +45,24 @@ BLACK = display.create_pen(0, 0, 0)
 WHITE = display.create_pen(200, 200, 200)
 GRAY = display.create_pen(30, 30, 30)
 
+# Touch tracking
+touch_start_x = 0
+touch_start_time = None
+tap = False
+NW = False # touch area 1
+NE = False # touch area 2
+SW = False # touch area 3
+SE = False # touch area 4
 
+# Ambient LEDs colour definitions:
+
+ambLedsDict = {0: (255,   0,   0),  # Red
+               1: (  0, 255,   0),  # Green
+               2: (  0,   0, 255),  # Blue
+               3: (255, 255, 255)}  # White
+
+amb_leds_colour_idx = -1 
+amb_leds_colour_idx_max = 3  # 0 ~ 3 = 4 colours
 
 use_buzzer = True
 
@@ -56,7 +73,7 @@ buzzer = Buzzer(43)
 alert_duration = 2
 alert_start_time = 0
 
-do_startwait = True
+do_startwait = False
 
 t_start = time.ticks_ms()
 start_asp_t = t_start
@@ -98,7 +115,13 @@ except ImportError as e:
     if not update_fm_ntp():
         while True:
             time.sleep(5)
-    
+            
+leds_on = False
+
+def touched(self, touch):
+        x, y, w, h = self.bounds()
+        return touch.x > x and touch.x < x + w and touch.y > y and touch.y < y + h
+   
 def update_fm_ntp():
     t1 = "Unable to get time from NTP server.\n\nCheck your network and try again."
     TAG = "update_fm_ntp(): "
@@ -264,6 +287,26 @@ def update_fm_ntp():
     
     return ret
 
+def ck_corners():
+    global touch, NW, NE, SW, SE
+    x = touch.x
+    y = touch.y
+    
+    # check upper left (corner 1)
+    if x >= 0 and x <= 200 and y >= 0 and y <= 140:
+        NW = True
+    
+    # check upper right (corner 2)
+    elif x >= 255 and x <= 470 and y >= 0 and y <= 140:
+        NE = True
+    
+    # check lower left (corner 3)
+    elif x >= 0 and x <= 200 and y >= 280 and y <= 480:
+        SW = True
+    
+    # check lower right (corner 4)
+    elif x >= 255 and x <= 470 and y >= 280 and y <= 480:
+        SE = True
 
 hub = Polygon()
 hub.circle(int(WIDTH / 2), int(HEIGHT / 2), 0) # was: ,5) # this change maked the outer small "ring" more small
@@ -357,6 +400,9 @@ start_t = time.ticks_ms()
 curr_t = 0
 elapsed_t = 0
 
+# Take a local reference to touch for a tiny performance boost
+touch = presto.touch
+
 while True:
     # time.sleep(60 * NTP_UPDATE_INTERVAL)
     curr_t = time.ticks_ms()
@@ -371,6 +417,53 @@ while True:
     tm = time.localtime()
     year, month, day, hour, minute, second, _, _ = tm
     
+    touch.poll()
+
+    if touch.state: #and touch_start_time is None:
+        ck_corners()
+        touch.state = False
+        
+        if NW:
+            aspect_idx -= 1
+            if aspect_idx < aspect_minimum:
+                aspect_idx = aspect_maximum
+            chg_aspect(aspect_idx)
+            NW = False
+        elif NE:
+            aspect_idx += 1
+            if aspect_idx > aspect_maximum:
+                aspect_idx = aspect_minimum
+            chg_aspect(aspect_idx)
+            NE = False
+        elif SW:
+            amb_leds_colour_idx += 1
+            if amb_leds_colour_idx > amb_leds_colour_idx_max:
+                amb_leds_colour_idx = -1
+                
+                    
+            leds_on = True
+            SW = False
+        elif SE:
+            leds_on = False
+            SE = False
+
+    if leds_on:
+        # Cycle the hue of the backlight LEDs to match the icon colours
+        hue = 1.0 # - (move_angle % (2 * math.pi)) / (2 * math.pi)
+        if amb_leds_colour_idx in ambLedsDict.keys():
+            clr = ambLedsDict[amb_leds_colour_idx]
+            for i in range(7):
+                #presto.set_led_hsv(i, hue, 1.0, 0.5)
+                presto.set_led_rgb(i, clr[0], clr[1], clr[2])
+    else:
+        hue = 0.0 # - (move_angle % (2 * math.pi)) / (2 * math.pi)
+        for i in range(7):
+            #presto.set_led_hsv(i, hue, 0.0, 0.0)
+            presto.set_led_rgb(i, 0, 0, 0)
+    presto.update()
+    time.sleep(0.05) # prevent touch bounce (50 mSecs)
+        
+    """
     curr_asp_t = time.time()  # epoch timeserial
     elapsed_asp_t = curr_asp_t - start_asp_t
     # print(f"elapsed_asp_t = {elapsed_asp_t}")
@@ -384,6 +477,7 @@ while True:
     
     if time.time() - alert_start_time >= alert_duration:
         stop_buzzer()
+    """
 
     if last_second == second:
         time.sleep_ms(10)
