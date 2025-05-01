@@ -6,10 +6,12 @@ import time
 import gc
 import machine
 import ntptime
+from breakout_bme280 import BreakoutBME280
 
 from presto import Presto, Buzzer
 
 from picovector import PicoVector, Polygon, Transform, ANTIALIAS_X16
+
 
 # ----- Added by @PaulskPt -------------
 tz_offset = 0
@@ -75,6 +77,16 @@ use_buzzer = False
 
 # Setup the buzzer. The Presto piezo is on pin 43.
 buzzer = Buzzer(43)
+
+
+# Setup for the i2c and bme sensor
+have_bme = False # set flag
+try:
+    bme = BreakoutBME280(machine.I2C())
+    have_bme = True # yes, we have a bme sensor!
+except RuntimeError:
+    while True:
+        show_message("No Multi-Sensor stick detected!\n\nConnect and try again.")
 
 # How long the completion alert should be played (seconds)
 alert_duration = 2
@@ -308,7 +320,34 @@ def disp_date():
     else:
         clr = BLACK
     display.set_pen(clr)
-    vector.text(t, 70, VERT_MIDDLE-30)
+    vector.text(t, 75, VERT_MIDDLE+80) # was: -30
+
+# Display temperature, pressure and humidity
+def disp_tph(rdg):
+    vector.set_font_size(46)
+
+    if aspect_idx == 1:
+        clr = BLUE
+    else:
+        clr = BLACK
+    
+    reading = bme.read()
+    temp = round(rdg[0], 2)
+    press = round(rdg[1] /100, 2)
+    hum = round(rdg[2], 2)
+    degree = str(b'\xc2\xb0', 'utf8') # create from bytes
+    #degree = chr(176) # create from known unicode point
+    t1 = "BME280 temp: {:5.2f} {:s}C, press: {:7.2f} mB, hum: {:5.2f} %rH".format(temp, degree, press, hum)
+    t2 = "T {:7.2f} {:s}C".format(temp, degree) 
+    t3 = "H {:7.2f} %rH".format(hum)
+    t4 = "P {:7.2f} mB".format(press)
+    # print(t1)
+    hPos = 130
+    display.set_pen(clr)
+    vector.text(t2, hPos, VERT_MIDDLE-110)
+    vector.text(t3, hPos, VERT_MIDDLE-75)
+    vector.text(t4, hPos, VERT_MIDDLE-40)
+    
 
 def ck_corners():
     global touch, NW, NE, SW, SE
@@ -419,6 +458,15 @@ start_t = time.ticks_ms()
 curr_t = 0
 elapsed_t = 0
 
+if have_bme:
+    print("BME280 sensor is connected")
+    start_bme_t = time.ticks_ms()
+    curr_bme_t = 0
+    bme_elapsed_t = 0
+    bme_interval_t = 15 * 1000  # 15 seconds
+    print_tph_cnt = 0
+    reading = (0.0, 0.0, 0.0)
+    
 leds_on_cnt = 0
 leds_off_cnt = 0
 
@@ -433,6 +481,9 @@ vector.set_font("Roboto-Medium.af", 66)
 vector.set_font_letter_spacing(100)
 vector.set_font_word_spacing(100)
 
+
+start = True
+
 while True:
     # time.sleep(60 * NTP_UPDATE_INTERVAL)
     curr_t = time.ticks_ms()
@@ -446,6 +497,25 @@ while True:
     
     tm = time.localtime()
     year, month, day, hour, minute, second, _, _ = tm
+
+    if have_bme:
+        curr_bme_t = time.ticks_ms()
+        elapsed_bme_t = curr_bme_t - start_bme_t
+        if start or elapsed_bme_t >= bme_interval_t:
+            # print(f"elapsed_bme_t = {elapsed_bme_t}")
+            start_bme_t = curr_bme_t
+            reading = bme.read()
+            temp = round(reading[0], 2)
+            press = round(reading[1] /100, 2)
+            hum = round(reading[2], 2)
+            # Slow down the times tph will be printed in the shell serial output
+            print_tph_cnt += 1
+            if start or print_tph_cnt >= 4:
+                start = False
+                degree = str(b'\xc2\xb0', 'utf8') # create from bytes
+                t1 = "BME280 temp: {:5.2f} {:s}C, press: {:7.2f} mB, hum: {:5.2f} %rH".format(temp, degree, press, hum)
+                print(t1)
+                print_tph_cnt = 0
     
     touch.poll()
 
@@ -462,12 +532,6 @@ while True:
         elif NE:
             show_date = not show_date # flip the flag
             print(f"Show date flag = {"True" if show_date == True else "False"}")
-            """
-            aspect_idx += 1
-            if aspect_idx > aspect_maximum:
-                aspect_idx = aspect_minimum
-            chg_aspect(aspect_idx)
-            """
             NE = False
         elif SW:
             amb_leds_colour_idx += 1
@@ -588,6 +652,8 @@ while True:
     t.reset()
     vector.draw(hub)
     
+    if have_bme and show_date:
+        disp_tph(reading)
     if show_date:
         disp_date()
 
