@@ -250,4 +250,73 @@ BME280 temp: 24.40 ºC, press:  996.32 mB, hum: 35.14 %rH
 BME280 temp: 24.38 ºC, press:  996.26 mB, hum: 35.34 %rH
 
 
- 
+ -----------------------------------------------------
+ BME280 temp: 24.07 °C, press:  996.01 mB, hum: 38.46 %rH
+BME280 temp: 24.16 °C, press:  995.93 mB, hum: 38.34 %rH
+rtc updated from NTP timestamp
+datetime received from NTP server: 
+2025-05-01 T 21:45:12, Thu, yearday: 121, timezone: UTC+1
+BME280 temp: 24.15 °C, press:  995.94 mB, hum: 38.33 %rH
+BME280 temp: 24.12 °C, press:  995.98 mB, hum: 38.51 %rH
+BME280 temp: 24.08 °C, press:  996.04 mB, hum: 38.66 %rH
+BME280 temp: 24.07 °C, press:  996.07 mB, hum: 38.72 %rH
+BME280 temp: 24.18 °C, press:  996.10 mB, hum: 38.43 %rH
+BME280 temp: 24.27 °C, press:  996.07 mB, hum: 38.23 %rH
+BME280 temp: 24.19 °C, press:  996.08 mB, hum: 38.46 %rH
+BME280 temp: 24.02 °C, press:  996.11 mB, hum: 38.84 %rH
+BME280 temp: 24.04 °C, press:  996.07 mB, hum: 38.84 %rH
+BME280 temp: 24.08 °C, press:  996.07 mB, hum: 38.80 %rH
+BME280 temp: 24.13 °C, press:  996.00 mB, hum: 38.70 %rH
+BME280 temp: 24.06 °C, press:  996.04 mB, hum: 38.88 %rH
+BME280 temp: 24.01 °C, press:  995.99 mB, hum: 39.05 %rH
+BME280 temp: 24.06 °C, press:  995.93 mB, hum: 38.92 %rH
+BME280 temp: 24.03 °C, press:  995.93 mB, hum: 39.01 %rH
+rtc updated from NTP timestamp
+datetime received from NTP server: 
+2025-05-01 T 22:00:12, Thu, yearday: 121, timezone: UTC+1
+BME280 temp: 24.11 °C, press:  995.91 mB, hum: 38.92 %rH
+BME280 temp: 24.00 °C, press:  995.96 mB, hum: 39.06 %rH
+BME280 temp: 23.89 °C, press:  995.93 mB, hum: 39.33 %rH
+BME280 temp: 23.86 °C, press:  995.94 mB, hum: 39.47 %rH
+BME280 temp: 23.92 °C, press:  995.95 mB, hum: 39.41 %rH
+BME280 temp: 23.96 °C, press:  995.92 mB, hum: 39.31 %rH
+BME280 temp: 23.99 °C, press:  995.96 mB, hum: 39.26 %rH
+BME280 temp: 24.00 °C, press:  995.99 mB, hum: 39.26 %rH
+BME280 temp: 23.93 °C, press:  995.99 mB, hum: 39.42 %rH
+BME280 temp: 23.87 °C, press:  996.05 mB, hum: 39.58 %rH
+BME280 temp: 23.92 °C, press:  996.07 mB, hum: 39.45 %rH
+BME280 temp: 23.99 °C, press:  996.10 mB, hum: 39.38 %rH
+BME280 temp: 23.87 °C, press:  996.12 mB, hum: 39.66 %rH
+BME280 temp: 23.79 °C, press:  996.12 mB, hum: 39.88 %rH
+BME280 temp: 23.76 °C, press:  996.16 mB, hum: 39.85 %rH
+rtc updated from NTP timestamp
+datetime received from NTP server: 
+2025-05-01 T 22:15:12, Thu, yearday: 121, timezone: UTC+1
+BME280 temp: 23.69 °C, press:  996.16 mB, hum: 40.04 %rH
+BME280 temp: 23.75 °C, press:  996.20 mB, hum: 39.94 %rH
+BME280 temp: 23.74 °C, press:  996.22 mB, hum: 39.97 %rH
+BME280 temp: 23.70 °C, press:  996.26 mB, hum: 40.06 %rH
+BME280 temp: 23.71 °C, press:  996.27 mB, hum: 40.13 %rH
+BME280 temp: 23.67 °C, press:  996.27 mB, hum: 40.18 %rH
+BME280 temp: 23.70 °C, press:  996.27 mB, hum: 40.13 %rH
+BME280 temp: 23.59 °C, press:  996.26 mB, hum: 40.44 %rH
+BME280 temp: 23.65 °C, press:  996.26 mB, hum: 40.33 %rH
+BME280 temp: 23.59 °C, press:  996.26 mB, hum: 40.42 %rH
+BME280 temp: 23.63 °C, press:  996.26 mB, hum: 40.36 %rH
+BME280 temp: 23.61 °C, press:  996.27 mB, hum: 40.49 %rH
+BME280 temp: 23.60 °C, press:  996.27 mB, hum: 40.40 %rH
+BME280 temp: 23.63 °C, press:  996.25 mB, hum: 40.43 %rH
+BME280 temp: 23.61 °C, press:  996.29 mB, hum: 40.45 %rH
+rtc updated from NTP timestamp
+datetime received from NTP server: 
+2025-05-01 T 22:30:12, Thu, yearday: 121, timezone: UTC+1
+BME280 temp: 23.60 °C, press:  996.29 mB, hum: 40.51 %rH
+BME280 temp: 23.57 °C, press:  996.31 mB, hum: 40.62 %rH
+BME280 temp: 23.57 °C, press:  996.31 mB, hum: 40.57 %rH
+BME280 temp: 23.64 °C, press:  996.30 mB, hum: 40.48 %rH
+BME280 temp: 23.64 °C, press:  996.29 mB, hum: 40.55 %rH
+BME280 temp: 23.64 °C, press:  996.29 mB, hum: 40.46 %rH
+BME280 temp: 23.62 °C, press:  996.30 mB, hum: 40.50 %rH
+BME280 temp: 23.61 °C, press:  996.29 mB, hum: 40.63 %rH
+BME280 temp: 23.55 °C, press:  996.29 mB, hum: 40.73 %rH
+BME280 temp: 23.63 °C, press:  996.24 mB, hum: 40.65 %rH
